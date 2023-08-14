@@ -7,22 +7,18 @@ from matplotlib.collections import LineCollection
 
 import os
 
-schedule = ff1.get_event_schedule(2021)
+schedule = ff1.get_event_schedule(2022)
 
-session = ff1.get_event(schedule['EventDate'][0].year,schedule['OfficialEventName'][0])
-
-ff1.get_session(schedule['EventDate'][0].year,session['EventName'],"Q")
-
-for round in range(1,19):
+for round in range(1,schedule.shape[0]):
 	print(schedule.iloc[round][:])
-	session = ff1.get_event(schedule['EventDate'][round].year,schedule['OfficialEventName'][0])
+	session = ff1.get_event(schedule['EventDate'][round].year,schedule['OfficialEventName'][round])
 
 	session = ff1.get_session(schedule['EventDate'][round].year,session['EventName'],"Q")
 	weekend = round
 	session.load()
 	ses = 'Q'
 	year=schedule['EventDate'][0].year
-	path = f'Differences/{year}/{weekend}/{ses}/'
+	path = f'Speed/{year}/{weekend}/{ses}/'
 	
 	if not os.path.exists(path):
 		os.makedirs(path)
@@ -47,42 +43,45 @@ for round in range(1,19):
 	colormap = mpl.colormaps['Reds']
 
 	for i,driver in enumerate(las):
-		fig, ax = plt.subplots(sharex=True, sharey=True, figsize=(12, 6.75))
+		try:
+			fig, ax = plt.subplots(sharex=True, sharey=True, figsize=(12, 6.75))
 
-		lap = session.laps.pick_driver(las[i])
+			lap = session.laps.pick_driver(las[i])
 
-		driver = session.get_driver(las[i])['Abbreviation']
+			driver = session.get_driver(las[i])['Abbreviation']
 		
-		color = np.subtract(color_fast,lap.pick_fastest().telemetry["Speed"])
+			color = np.subtract(color_fast,lap.pick_fastest().telemetry["Speed"])
 
-		fig.suptitle(f'{session.event.OfficialEventName} \n {driver_fast} vs {driver}', size=24, y=0.97)
+			fig.suptitle(f'{session.event.OfficialEventName} \n {driver_fast} vs {driver}', size=24, y=0.97)
 
-		# Adjust margins and turn of axis
-		plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.12)
-		ax.axis('off')
-
-
-		# After this, we plot the data itself.
-		# Create background track line
-		ax.plot(lap_fast.telemetry['X'], lap_fast.telemetry['Y'], color='black', linestyle='-', linewidth=16, zorder=0)
-
-		# Create a continuous norm to map from data points to colors
-		norm = plt.Normalize(color.min(), color.max())
-		lc = LineCollection(segments, cmap=colormap, norm=norm, linestyle='-', linewidth=5)
-
-		# Set the values used for colormapping
-		lc.set_array(color)
-
-		# Merge all line segments together
-		line = ax.add_collection(lc)
+			# Adjust margins and turn of axis
+			plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.12)
+			ax.axis('off')
 
 
-		# Finally, we create a color bar as a legend.
-		cbaxes = fig.add_axes([0.25, 0.05, 0.5, 0.05])
-		normlegend = mpl.colors.Normalize(vmin=color.min(), vmax=color.max())
-		legend = mpl.colorbar.ColorbarBase(cbaxes, norm=normlegend, cmap=colormap, orientation="horizontal")
+			# After this, we plot the data itself.
+			# Create background track line
+			ax.plot(lap_fast.telemetry['X'], lap_fast.telemetry['Y'], color='black', linestyle='-', linewidth=16, zorder=0)
 
-		plt.savefig(f'{path}/{driver_fast} vs {driver}.png')
-		print(f'{path}/{driver_fast} vs {driver}.png')
-		# Show the plot
-		#plt.show()
+			# Create a continuous norm to map from data points to colors
+			norm = plt.Normalize(color.min(), color.max())
+			lc = LineCollection(segments, cmap=colormap, norm=norm, linestyle='-', linewidth=5)
+
+			# Set the values used for colormapping
+			lc.set_array(color)
+
+			# Merge all line segments together
+			line = ax.add_collection(lc)
+
+
+			# Finally, we create a color bar as a legend.
+			cbaxes = fig.add_axes([0.25, 0.05, 0.5, 0.05])
+			normlegend = mpl.colors.Normalize(vmin=color.min(), vmax=color.max())
+			legend = mpl.colorbar.ColorbarBase(cbaxes, norm=normlegend, cmap=colormap, orientation="horizontal")
+
+			plt.savefig(f'{path}/{driver_fast} vs {driver}.png')
+			print(f'{path}/{driver_fast} vs {driver}.png')
+			# Show the plot
+			#plt.show()
+		except:
+			print(f'{path}/{driver_fast} vs {driver}.png - > Not Usefull')
