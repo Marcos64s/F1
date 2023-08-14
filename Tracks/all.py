@@ -7,7 +7,9 @@ from matplotlib.collections import LineCollection
 
 import os
 
-schedule = ff1.get_event_schedule(2022)
+schedule = ff1.get_event_schedule(2020)
+
+check = 'Throttle'
 
 for round in range(1,schedule.shape[0]):
 	print(schedule.iloc[round][:])
@@ -18,7 +20,7 @@ for round in range(1,schedule.shape[0]):
 	session.load()
 	ses = 'Q'
 	year=schedule['EventDate'][0].year
-	path = f'Speed/{year}/{weekend}/{ses}/'
+	path = f'Metrics/{check}/{year}/{weekend}/{ses}/'
 	
 	if not os.path.exists(path):
 		os.makedirs(path)
@@ -34,7 +36,7 @@ for round in range(1,schedule.shape[0]):
 	# Get telemetry data
 	x = lap_fast.telemetry['X']              # values for x-axis
 	y = lap_fast.telemetry['Y']              # values for y-axis
-	color_fast = lap_fast.telemetry['Speed']      # value to base color gradient on
+	color_fast = lap_fast.telemetry[check]      # value to base color gradient on
 	points = np.array([x, y]).T.reshape(-1, 1, 2)
 	segments = np.concatenate([points[:-1], points[1:]], axis=1)
 	las = session.drivers
@@ -50,7 +52,7 @@ for round in range(1,schedule.shape[0]):
 
 			driver = session.get_driver(las[i])['Abbreviation']
 		
-			color = np.subtract(color_fast,lap.pick_fastest().telemetry["Speed"])
+			color = np.subtract(color_fast,lap.pick_fastest().telemetry[check])
 
 			fig.suptitle(f'{session.event.OfficialEventName} \n {driver_fast} vs {driver}', size=24, y=0.97)
 
