@@ -20,7 +20,7 @@ for round in range(1,schedule.shape[0]):
 	session.load()
 	ses = 'Q'
 	year=schedule['EventDate'][0].year
-	path = f'Metrics/{check}/{year}/{weekend}/{ses}/'
+	path = f'Tracks/Metrics/{check}/{year}/{weekend}/{ses}/'
 	
 	if not os.path.exists(path):
 		os.makedirs(path)
