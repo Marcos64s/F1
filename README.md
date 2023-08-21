@@ -57,8 +57,7 @@ Our analysis revealed several intriguing findings:
 - **Driver Consistency**: Some drivers consistently achieve fast lap times, regardless of the circuit or weather conditions.
 - **Team Influence**: Team strategies, such as tire choices and pit stops, can influence a driver's ability to achieve the fastest lap.
 
-![Lap resutls](Tracks/Metrics/Speed/2022/4/Q/LEC vs BOT.png)
-
+![Lap resutls](Tracks/Metrics/Speed/2022/4/Q/LEC%20vs%20HAM.png)
 ## Conclusion
 
 The Formula 1 Fastest Laps Analysis provides valuable insights into the dynamics of F1 racing. Understanding the factors that contribute to the differences in fastest lap times enhances our appreciation for the sport's complexity and showcases the synergy between human skill and technological innovation.
