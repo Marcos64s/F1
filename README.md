@@ -1,6 +1,6 @@
 # Formula 1 Fastest Laps Analysis
 
-![F1 Logo](assets/f1_logo.png)
+![F1 Logo](assets/f1-logo.png)
 
 Welcome to the **Formula 1 Fastest Laps Analysis** repository! In this study, we delve into the exciting world of Formula 1 racing and focus on analyzing the differences in the fastest laps achieved during each race weekend across various seasons. This readme provides an overview of the study, its objectives, methodologies, and key findings.
 
