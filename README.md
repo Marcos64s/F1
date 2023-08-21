@@ -57,7 +57,7 @@ Our analysis revealed several intriguing findings:
 - **Driver Consistency**: Some drivers consistently achieve fast lap times, regardless of the circuit or weather conditions.
 - **Team Influence**: Team strategies, such as tire choices and pit stops, can influence a driver's ability to achieve the fastest lap.
 
-![Lap resutls](Tracks/Metrics/Speed/2022/4/Q/LEC vs BOT.png)
+![Lap resutls](Tracks/Metrics/Speed/2022/4/Q/LEC_vs_BOT.png)
 
 ## Conclusion
 
