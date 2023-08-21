@@ -14,7 +14,6 @@ Welcome to the **Formula 1 Fastest Laps Analysis** repository! In this study, we
 - [Results](#results)
 - [Conclusion](#conclusion)
 - [Future Work](#future-work)
-- [Contributors](#contributors)
 - [License](#license)
 
 ## Introduction
@@ -65,15 +64,6 @@ The Formula 1 Fastest Laps Analysis provides valuable insights into the dynamics
 ## Future Work
 
 In the future, this analysis can be extended by including more granular data, such as real-time weather conditions, tire choices, and detailed driver performance metrics. Additionally, machine learning models could be developed to predict fastest lap times based on various input parameters.
-
-## Contributors
-
-This study was conducted by a team of passionate Formula 1 enthusiasts and data analysts. Contributors include:
-- John Smith (GitHub: @johnsmith)
-- Jane Doe (GitHub: @janedoe)
-- Robert Johnson (GitHub: @robertjohnson)
-
-We express our gratitude to the Formula 1 community for providing the data and inspiration for this study.
 
 ## License
 
